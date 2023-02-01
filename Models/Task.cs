@@ -9,18 +9,18 @@ public class Task
     public Guid taskID {get;set;}
 
     [ForeignKey("CategoryID")]
-    public Guid CategoryID;
+    public Guid CategoryID {get;set;}
 
     [Required]
-    [MaxLength(200  )]
-    public string tittle;
-    public string description;
-    public priority taskPriority;
-    public DateTime creationDate;
+    [MaxLength(200)]
+    public string tittle {get;set;}
+    public string description {get;set;}
+    public priority taskPriority {get;set;}
+    public DateTime creationDate {get;set;}
     public virtual Category category{get;set;}
 
     [NotMapped]
-    public string summary;
+    public string summary {get;set;}
 }
 
 public enum priority

@@ -3,7 +3,6 @@ using APITask.Models;
 
 namespace APITask.Context; 
 
-
 public class APITaskContext : DbContext
 {
     public DbSet<Category> Categories{get;set;}

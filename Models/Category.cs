@@ -9,7 +9,7 @@ public class Category
 
     [Required]
     [MaxLength(150)]
-    public string name;
-    public string description;
-    public virtual ICollection<Task> task{get;set;}
+    public string name {get;set;}
+    public string description {get;set;}
+    public virtual ICollection<Task> tasks{get;set;}
 }
