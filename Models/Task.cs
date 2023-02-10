@@ -1,25 +1,22 @@
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
 namespace APITask.Models;
 
 public class Task
 {
-    [Key]
+    //[Key]
     public Guid taskID {get;set;}
 
-    [ForeignKey("CategoryID")]
+    //[ForeignKey("CategoryID")]
     public Guid CategoryID {get;set;}
 
-    [Required]
-    [MaxLength(200)]
+    //[Required]
+    //[MaxLength(200)]
     public string tittle {get;set;}
     public string description {get;set;}
-    public priority taskPriority {get;set;}
+    public priority Priority {get;set;}
     public DateTime creationDate {get;set;}
-    public virtual Category category{get;set;}
+    public virtual Category categoryInTask{get;set;}
 
-    [NotMapped]
+    //[NotMapped]
     public string summary {get;set;}
 }
 
