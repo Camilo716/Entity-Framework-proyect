@@ -17,23 +17,24 @@ public class APITaskContext : DbContext
             category.ToTable("Category");
             category.HasKey(p=> p.CategoryID);
 
-            category.Property(p=>p.name).IsRequired().HasMaxLength(150);
-            category.Property(p=>p.description).IsRequired().HasMaxLength(150);
+            category.Property(p=> p.name).IsRequired().HasMaxLength(150);
+            category.Property(p=> p.description).IsRequired().HasMaxLength(150);
+            category.Property(p=> p.peso);
 
         });
 
         modelBuilder.Entity<Models.Task>(task => 
         {
             task.ToTable("Task");
-            task.HasKey(p => p.taskID);
-            task.HasOne(p => p.categoryInTask).WithMany(p => p.tasks).HasForeignKey(p => p.CategoryID);
+            task.HasKey(p=> p.taskID);
+            task.HasOne(p=> p.categoryInTask).WithMany(p => p.tasks).HasForeignKey(p => p.CategoryID);
 
-            task.Property(p => p.tittle).IsRequired().HasMaxLength(200);
-            task.Property(p => p.description);
-            task.Property(p => p.Priority);
-            task.Property(p => p.creationDate);
+            task.Property(p=> p.tittle).IsRequired().HasMaxLength(200);
+            task.Property(p=> p.description);
+            task.Property(p=> p.Priority);
+            task.Property(p=> p.creationDate);
 
-            task.Ignore(p=>p.summary);
+            task.Ignore(p=> p.summary);
         });
     }
 }

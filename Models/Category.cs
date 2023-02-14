@@ -9,5 +9,6 @@ public class Category
     //[MaxLength(150)]
     public string name {get;set;}
     public string description {get;set;}
+    public int peso {get;set;}
     public virtual ICollection<Task> tasks{get;set;}
 }
