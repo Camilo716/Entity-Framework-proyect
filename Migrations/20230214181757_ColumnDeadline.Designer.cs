@@ -4,6 +4,7 @@ using APITask.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APITask.Migrations
 {
     [DbContext(typeof(APITaskContext))]
-    partial class APITaskContextModelSnapshot : ModelSnapshot
+    [Migration("20230214181757_ColumnDeadline")]
+    partial class ColumnDeadline
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,6 +31,7 @@ namespace APITask.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("description")
+                        .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
@@ -43,25 +46,11 @@ namespace APITask.Migrations
                     b.HasKey("CategoryID");
 
                     b.ToTable("Category", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            CategoryID = new Guid("790eebd4-ed89-4366-8561-cce9488e52fa"),
-                            name = "Pending activities",
-                            peso = 20
-                        },
-                        new
-                        {
-                            CategoryID = new Guid("790eebd4-ed89-4366-8561-cce9488e5202"),
-                            name = "Personal activities",
-                            peso = 50
-                        });
                 });
 
             modelBuilder.Entity("APITask.Models.Task", b =>
                 {
-                    b.Property<Guid>("TaskID")
+                    b.Property<Guid>("taskID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -78,6 +67,7 @@ namespace APITask.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("tittle")
@@ -85,31 +75,11 @@ namespace APITask.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.HasKey("TaskID");
+                    b.HasKey("taskID");
 
                     b.HasIndex("CategoryID");
 
                     b.ToTable("Task", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            TaskID = new Guid("790eebd4-ed89-4366-8561-cce9488e5210"),
-                            CategoryID = new Guid("790eebd4-ed89-4366-8561-cce9488e52fa"),
-                            Deadline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Priority = 1,
-                            creationDate = new DateTime(2023, 2, 14, 14, 15, 25, 470, DateTimeKind.Local).AddTicks(8984),
-                            tittle = "Public services pay"
-                        },
-                        new
-                        {
-                            TaskID = new Guid("790eebd4-ed89-4366-8561-cce9488e5211"),
-                            CategoryID = new Guid("790eebd4-ed89-4366-8561-cce9488e5202"),
-                            Deadline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Priority = 0,
-                            creationDate = new DateTime(2023, 2, 14, 14, 15, 25, 470, DateTimeKind.Local).AddTicks(9014),
-                            tittle = "Finish Netflix series"
-                        });
                 });
 
             modelBuilder.Entity("APITask.Models.Task", b =>
